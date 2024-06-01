@@ -23,6 +23,7 @@ function App() {
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/add-product" element={<ProductForm />} />
             <Route path="/favorites" element={<FavoriteProducts />} />
+            <Route path="/search" element={<ProductList />} />
           </Routes>
         </div>
       </div>

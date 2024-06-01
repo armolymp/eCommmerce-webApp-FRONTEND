@@ -15,7 +15,7 @@ const Product = ({ product }) => {
       <img src={getImageUrl(product.featuredImage)} alt={product.name} />
       <h2>{product.name}</h2>
       <p>{product.description}</p>
-      <Link to={`/product/${product._id}`}>View Details</Link>
+      <Link to={`/products/${product._id}`}>View Details</Link>
     </div>
   );
 };

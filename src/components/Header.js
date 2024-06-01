@@ -6,7 +6,7 @@ import '../styles/Header.css';
 const Header = () => (
   <header className="header">
     <h1>E-commerce App</h1>
-    <SearchBar />
+    {/* <SearchBar /> */}
     <nav>
       <Link to="/">Home</Link>
       <Link to="/add">Add Product</Link>

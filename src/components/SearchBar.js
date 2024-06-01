@@ -7,7 +7,9 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    navigate(`/search?q=${query}`);
+    if (query.trim()) {
+      navigate(`/search?q=${query}`);
+    }
   };
 
   return (
