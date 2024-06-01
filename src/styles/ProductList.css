@@ -1,13 +1,46 @@
+/* src/styles/ProductList.css */
+
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  
-  .product-list h2 {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
+  margin: 20px;
+}
+
+.product-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-list th, .product-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.product-list th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.product-list img {
+  display: block;
+  margin: 0 auto;
+}
+
+.product-list .actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.product-list .view-button, .product-list .delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 1.2em;
+}
+
+.product-list .view-button:hover, .product-list .delete-button:hover {
+  color: #0056b3;
+}
+
+.product-list .view-button:focus, .product-list .delete-button:focus {
+  outline: none;
+}
