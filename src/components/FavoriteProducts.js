@@ -9,7 +9,7 @@ const FavoriteProducts = () => {
   return (
     <div className="favorite-products">
       <h2>Favorite Products</h2>
-      {favoriteProducts.map(product => (
+      {favoriteProducts?.map(product => (
         <Product key={product._id} product={product} />
       ))}
     </div>
