@@ -65,7 +65,9 @@ const ProductList = () => {
 
   return (
     <div className="product-list">
+      <div style={{margin:'-20px 0px 10px 250px'}}>
       <SearchBar productNames={productNames} />
+      </div>
       {filteredProducts.length > 0 ? (
         <table>
           <thead>

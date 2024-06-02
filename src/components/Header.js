@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import '../styles/Header.css';
+import AdminButton from './Profile';
 
 const Header = () => {
   const location = useLocation();
@@ -22,6 +23,8 @@ const Header = () => {
   }
 
   return (
+    <>
+    <AdminButton/>
     <header className="header">
       <h1>{heading}</h1>
       {location.pathname.startsWith('/favorites') || location.pathname.startsWith('/search')? <SearchBar />: <></>}
@@ -34,6 +37,7 @@ const Header = () => {
         </Link>
       </div>
     </header>
+    </>
   );
 };
 
