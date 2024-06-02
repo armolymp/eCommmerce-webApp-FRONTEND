@@ -12,7 +12,7 @@ function App() {
   return (
       <div className="App">
         <Header />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <div className="container">
           <Routes>
             <Route path="/" element={<ProductList />} />

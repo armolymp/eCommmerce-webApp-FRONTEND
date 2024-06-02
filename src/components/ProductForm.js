@@ -92,15 +92,16 @@ const ProductForm = () => {
   return (
     <div className="product-form-container">
       <form onSubmit={handleSubmit} className="product-form">
-        <label>SKU:</label>
+        <div>
+        <label>SKU</label>
         <input
           type="text"
           name="sku"
           value={formData.sku}
           onChange={handleChange}
           required
-        />
-        <label>Name:</label>
+        /></div>
+        <label>Name</label>
         <input
           type="text"
           name="name"
@@ -108,7 +109,7 @@ const ProductForm = () => {
           onChange={handleChange}
           required
         />
-        <label>Quantity:</label>
+        <label>Quantity</label>
         <input
           type="number"
           name="quantity"
@@ -116,21 +117,23 @@ const ProductForm = () => {
           onChange={handleChange}
           required
         />
-        <label>Description:</label>
+        <label>Description</label>
         <textarea
+        style={{height:"90px"}}
+          placeholder='A small description about the product'
           name="description"
           value={formData.description}
           onChange={handleChange}
           required
         />
-        <label>Featured Image:</label>
+        <label>Featured Image</label>
         <input
           type="file"
           name="featuredImage"
           accept="image/*"
           onChange={handleFeaturedImageChange}
         />
-        <label>Product Images (up to 5):</label>
+        <label>Product Images (up to 5)</label>
         <input
           type="file"
           name="images"

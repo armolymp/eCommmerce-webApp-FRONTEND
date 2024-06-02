@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/SearchBar.css';
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
-  const navigate = useNavigate();
 
-  const handleSearch = () => {
-    if (query.trim()) {
-      navigate(`/search?q=${query}`);
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/products/search?q=${query}`);
+      onSearch(response.data);
+    } catch (error) {
+      console.error('Error searching for products:', error);
     }
   };
 

@@ -1,35 +1,86 @@
+
 .header {
-    background-color: #343a40;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.header h1 {
+  font-size: 36px;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.new-product-btn, .star-btn {
+  background-color: #001EB9;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-product-btn {
+  height: 28px;
+  background-color: #001EB9;
+}
+
+.star-btn {
+  background-color: white;
+  border: 2px solid #001EB9;
+}
+
+.new-product-btn:hover, .star-btn:hover {
+  background-color: #004494;
+}
+
+.star-btn:hover {
+  background-color: #e9f1ff;
+}
+
+.star-btn svg {
+  fill: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .header .logo {
-    font-size: 1.5em;
-    font-weight: bold;
+
+  .search-bar {
+    width: 100%;
+    margin: 10px 0;
   }
-  
-  .header .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
   }
-  
-  .header .nav-links li {
-    display: inline;
+
+  .new-product-btn, .star-btn {
+    width: 100%;
+    justify-content: center;
   }
-  
-  .header .nav-links a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .header .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
+}

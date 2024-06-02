@@ -1,4 +1,5 @@
 // src/components/ProductList.js
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
@@ -12,7 +13,7 @@ import coloredStar from '../assets/starred.svg';
 import emptyStar from '../assets/star.svg';
 import editIcon from '../assets/edit-icon.svg';
 import deleteIcon from '../assets/delete-icon.svg';
-
+import { Modal } from 'react-bootstrap'; 
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -28,18 +29,20 @@ const ProductList = () => {
     JSON.parse(localStorage.getItem('favorites')) || []
   );
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // State to control delete confirmation modal
+  const [productToDelete, setProductToDelete] = useState(null); // State to store the product to be deleted
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
   const handleDelete = async (id) => {
-    if (window.confirm(`Are you sure you want to delete this product?`)) {
-      try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
-        dispatch(getProducts()); // Refresh the product list after deletion
-      } catch (error) {
-        console.error("There was an error deleting the product!", error);
-      }
+    try {
+      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      dispatch(getProducts()); // Refresh the product list after deletion
+      setShowDeleteModal(false); // Close the delete confirmation modal
+    } catch (error) {
+      console.error("There was an error deleting the product!", error);
     }
   };
 
@@ -66,7 +69,8 @@ const ProductList = () => {
               <th>SKU</th>
               <th>Image</th>
               <th>Product Name</th>
-              <th>Price</th>
+              <th>Quantity</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -81,24 +85,30 @@ const ProductList = () => {
                   />
                 </td>
                 <td>{product.name}</td>
-                <td>{product.price}</td>
+                <td>{product.quantity}</td>
                 <td>
                   <div className="icon-container">
-                <Link to={`/products/${product._id}`}>
-                    <FontAwesomeIcon icon={faEye} className="icon" />
-                  </Link>
-                  <Link to={`/edit-product/${product._id}`}>
-                    <img src={editIcon} alt="Edit" className="icon" />
-                  </Link>
-                  <button onClick={() => handleDelete(product._id)} className="icon-button">
-                    <img src={deleteIcon} alt="Delete" className="icon" />
-                  </button>
-                  <img
-                    src={favorites.includes(product._id) ? coloredStar : emptyStar}
-                    alt="Favorite"
-                    className="icon"
-                    onClick={() => toggleFavorite(product._id)}
-                  />
+                    <Link to={`/products/${product._id}`}>
+                      <FontAwesomeIcon icon={faEye} className="icon" />
+                    </Link>
+                    <Link to={`/edit-product/${product._id}`}>
+                      <img src={editIcon} alt="Edit" className="icon" />
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setProductToDelete(product);
+                        setShowDeleteModal(true);
+                      }}
+                      className="icon-button"
+                    >
+                      <img src={deleteIcon} alt="Delete" className="icon" />
+                    </button>
+                    <img
+                      src={favorites.includes(product._id) ? coloredStar : emptyStar}
+                      alt="Favorite"
+                      className="icon"
+                      onClick={() => toggleFavorite(product._id)}
+                    />
                   </div>
                 </td>
               </tr>
@@ -108,6 +118,22 @@ const ProductList = () => {
       ) : (
         <p>No products found</p>
       )}
+
+      {/* Delete Confirmation Modal */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {productToDelete && (
+            <p>Are you sure you want to delete the product "{productToDelete.name}"?</p>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+          <button onClick={() => handleDelete(productToDelete?._id)}>Delete</button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

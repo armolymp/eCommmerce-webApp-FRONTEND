@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { toggleFavorite } from '../actions/productActions';
+import '../styles/ProductDetail.css';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -13,30 +14,25 @@ const ProductDetail = () => {
   if (!product) {
     return <div>Loading...</div>;
   }
-
-  const handleToggleFavorite = () => {
-    dispatch(toggleFavorite(product._id));
-  };
-
+  
   return (
-    <div className="product-detail">
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <p>SKU: {product.sku}</p>
-      <p>Quantity: {product.quantity}</p>
-      <div className="images">
-        {product.images.map((image, index) => (
-          <img
-            key={index}
-            src={`http://localhost:5000/uploads/${image.split('\\').pop()}`}
-            alt={product.name}
-          />
-        ))}
+    <div className="product-detail-container">
+      <div className="product-detail">
+        <h2>{product.name}</h2>
+        <p className="product-description">{product.description}</p>
+        <p className="product-sku"><strong>SKU:</strong> {product.sku}</p>
+        <p className="product-quantity"><strong>Quantity:</strong> {product.quantity}</p>
+        <div className="product-images">
+          {product.images.map((image, index) => (
+            <img
+              key={index}
+              src={`http://localhost:5000/uploads/${image.split('\\').pop()}`}
+              alt={product.name}
+            />
+          ))}
+        </div>
+        <Link to={`/edit-product/${product._id}`} className="favorite-button">Edit Product</Link>
       </div>
-      <button onClick={handleToggleFavorite}>
-        {product.favorite ? 'Remove from Favorites' : 'Add to Favorites'}
-      </button>
-      <Link to={`/edit-product/${product._id}`}>Edit Product</Link>
     </div>
   );
 };
