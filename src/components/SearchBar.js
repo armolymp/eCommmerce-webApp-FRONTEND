@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SearchBar.css';
 
-const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+const SearchBar = () => {
+  const [input, setInput] = useState('');
+  const navigate = useNavigate();
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/api/products/search?q=${query}`);
-      onSearch(response.data);
-    } catch (error) {
-      console.error('Error searching for products:', error);
-    }
+  const handleSearch = () => {
+    navigate(`/search?q=${input}`);
   };
 
   return (
@@ -19,8 +15,8 @@ const SearchBar = ({ onSearch }) => {
       <input
         type="text"
         placeholder="Search products..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
     </div>

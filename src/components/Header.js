@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import '../styles/Header.css';
+import { useState } from 'react';
+
 
 const Header = () => (
+
   <header className="header">
     <h1>PRODUCTS</h1>
     <SearchBar />
