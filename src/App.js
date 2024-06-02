@@ -9,21 +9,17 @@ import SearchBar from './components/SearchBar';
 import './styles/App.css';
 
 function App() {
-  const handleSearch = (query) => {
-    console.log('Searching for:', query);
-  };
-
   return (
       <div className="App">
         <Header />
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar />
         <div className="container">
           <Routes>
             <Route path="/" element={<ProductList />} />
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/add-product" element={<ProductForm />} />
+            <Route path="/edit-product/:id" element={<ProductForm />} />
             <Route path="/favorites" element={<FavoriteProducts />} />
-            <Route path="/search" element={<ProductList />} />
           </Routes>
         </div>
       </div>

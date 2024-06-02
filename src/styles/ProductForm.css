@@ -1,43 +1,39 @@
-.product-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .product-form h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .product-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .product-form label {
-    margin-bottom: 5px;
-  }
-  
-  .product-form input, .product-form textarea {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .product-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .product-form button:hover {
-    background-color: #218838;
-  }
-  
+/* src/styles/ProductForm.css */
+.product-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.product-form input,
+.product-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.product-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-form button:hover {
+  background: #0056b3;
+}

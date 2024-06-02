@@ -9,7 +9,7 @@ const Header = () => (
     {/* <SearchBar /> */}
     <nav>
       <Link to="/">Home</Link>
-      <Link to="/add">Add Product</Link>
+      <Link to="/add-product">Add Product</Link>
       <Link to="/favorites">Favorites</Link>
     </nav>
   </header>
