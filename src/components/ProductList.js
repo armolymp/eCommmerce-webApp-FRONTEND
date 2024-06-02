@@ -13,6 +13,7 @@ import coloredStar from '../assets/starred.svg';
 import emptyStar from '../assets/star.svg';
 import editIcon from '../assets/edit-icon.svg';
 import deleteIcon from '../assets/delete-icon.svg';
+import ConfirmDeleteModal from './ConfirmDeleteModal';
 import { Modal } from 'react-bootstrap'; 
 
 const useQuery = () => {
@@ -119,21 +120,12 @@ const ProductList = () => {
         <p>No products found</p>
       )}
 
-      {/* Delete Confirmation Modal */}
-      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {productToDelete && (
-            <p>Are you sure you want to delete the product "{productToDelete.name}"?</p>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
-          <button onClick={() => handleDelete(productToDelete?._id)}>Delete</button>
-        </Modal.Footer>
-      </Modal>
+<ConfirmDeleteModal
+        isOpen={showDeleteModal}
+        onRequestClose={() => setShowDeleteModal(false)}
+        onConfirm={() => handleDelete(productToDelete?._id)}
+        productName={productToDelete?.name}
+      />
     </div>
   );
 };

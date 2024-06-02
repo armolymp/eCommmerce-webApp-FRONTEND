@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import '../styles/Deletefile.css'; // Import the CSS file
 
 const ConfirmDeleteModal = ({ isOpen, onRequestClose, onConfirm, productName }) => {
   return (
@@ -11,10 +12,10 @@ const ConfirmDeleteModal = ({ isOpen, onRequestClose, onConfirm, productName }) 
       className="modal"
       overlayClassName="overlay"
     >
-      <h2>Confirm Deletion</h2>
-      <p>Are you sure you want to delete the product "{productName}"?</p>
-      <button onClick={onConfirm}>Yes</button>
-      <button onClick={onRequestClose}>No</button>
+      <h2>ARE YOU SURE?</h2>
+      <p>You will not be able to undo this action if you proceed!</p>
+      <button onClick={onRequestClose}>Cancel</button>
+      <button onClick={onConfirm}>Delete</button>
     </Modal>
   );
 };

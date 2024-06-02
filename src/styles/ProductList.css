@@ -9,7 +9,7 @@ body {
 .product-list {
   padding: 20px;
   max-width: 100%;
-  margin: 0 auto;
+  margin-left: 10%;
 }
 
 .product-list table {
