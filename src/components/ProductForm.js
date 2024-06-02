@@ -92,8 +92,8 @@ const ProductForm = () => {
   return (
     <div className="product-form-container">
       <form onSubmit={handleSubmit} className="product-form">
-        <div>
-        <label>SKU</label>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <label style={{ flex: '0 0 auto', marginRight: '50px' }}>SKU</label>
         <input
           type="text"
           name="sku"
@@ -101,23 +101,25 @@ const ProductForm = () => {
           onChange={handleChange}
           required
         /></div>
-        <label>Name</label>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <label style={{ flex: '0 0 auto', marginRight: '37px' }}>Name</label>
         <input
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
           required
-        />
-        <label>Quantity</label>
+        /></div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <label style={{ flex: '0 0 auto', marginRight: '16px' }}>Quantity</label>
         <input
           type="number"
           name="quantity"
           value={formData.quantity}
           onChange={handleChange}
           required
-        />
-        <label>Description</label>
+        /></div>
+        <label>Product Description</label>
         <textarea
         style={{height:"90px"}}
           placeholder='A small description about the product'

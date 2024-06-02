@@ -11,9 +11,9 @@ const Header = () => {
   if (location.pathname.startsWith('/products/')) {
     heading = 'Product Details';
   } else if (location.pathname === '/add-product') {
-    heading = 'Add New Product';
+    heading = 'Product - Add New Product';
   } else if (location.pathname.startsWith('/edit-product/')) {
-    heading = 'Edit Product';
+    heading = 'Products - Edit Product';
   } else if (location.pathname === '/favorites') {
     heading = 'Favourite Products';
   } else if (location.pathname === '/search') {
