@@ -67,11 +67,11 @@ const ProductList = () => {
         <table>
           <thead>
             <tr>
-              <th>SKU</th>
-              <th>Image</th>
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>Actions</th>
+              <th style={{color:"#001EB9"}}>SKU</th>
+              <th style={{color:"#001EB9"}}>IMAGE</th>
+              <th style={{color:"#001EB9"}}>PRODUCT NAME</th>
+              <th style={{color:"#001EB9"}}>QUANTITY</th>
+              <th style={{color:"#001EB9"}}>ACTIONS</th>
             </tr>
           </thead>
           <tbody>

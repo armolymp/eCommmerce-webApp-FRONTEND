@@ -27,15 +27,18 @@
 .product-form button {
   display: block;
   float: right;
-  width: 15%;
+  width: 14%;
+  text-decoration: none;
+  background-color: #001EB9;
+  color: white;
   border: none;
-  height: 50px;
-  padding: 10px;
-  background: #001EB9;
-  color: #fff;
-  border-radius: 15px;
-  margin-top: 30px;
+  padding: 12px 30px;
+  border-radius: 20px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .product-form button:hover {

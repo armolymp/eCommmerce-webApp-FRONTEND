@@ -29,6 +29,7 @@
 
 .new-product-btn, .star-btn {
   background-color: #001EB9;
+  text-decoration: none;
   color: white;
   border: none;
   padding: 10px 20px;
