@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import arrowImage from '../assets/arrow.svg';
 import'../styles/SearchResults.css'
 
@@ -48,9 +48,9 @@ const SearchResults = () => {
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-description">{product.description}</p>
               </div>
-              <a href={`/products/${product._id}`} className="arrow-link">
+              <Link to={`/products/${product._id}`} className="arrow-link">
                 <img src={arrowImage} alt="View Details" className="arrow-icon" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>
