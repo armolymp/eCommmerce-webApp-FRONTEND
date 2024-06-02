@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import arrowImage from '../assets/arrow.svg';
+import'../styles/SearchResults.css'
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -32,32 +34,26 @@ const SearchResults = () => {
   }, [query]);
 
   return (
-    <div>
+    <div className="search-results-container">
       <h2>Search Results for "{query}"</h2>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && results.length === 0 && <p>No results found.</p>}
       {!loading && !error && results.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>SKU</th>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map((product) => (
-              <tr key={product._id}>
-                <td>{product.sku}</td>
-                <td>{product.name}</td>
-                <td>{product.quantity}</td>
-                <td>{product.description}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="results-list">
+          {results.map((product) => (
+            <div className="product-item" key={product._id}>
+              <div className="product-details">
+                <a href={`/products/${product._id}`} className="product-sku">#{product.sku}</a>
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-description">{product.description}</p>
+              </div>
+              <a href={`/products/${product._id}`} className="arrow-link">
+                <img src={arrowImage} alt="View Details" className="arrow-icon" />
+              </a>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

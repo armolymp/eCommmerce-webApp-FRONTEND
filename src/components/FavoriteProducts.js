@@ -53,10 +53,11 @@ const FavoriteProducts = () => {
         <table>
           <thead>
             <tr>
-              <th>SKU</th>
-              <th>Image</th>
-              <th>Product Name</th>
-              <th>QTY</th>
+              <th style={{color:"#001EB9"}}>SKU</th>
+              <th style={{color:"#001EB9"}}>IMAGE</th>
+              <th style={{color:"#001EB9"}}>PRODUCT NAME</th>
+              <th style={{color:"#001EB9"}}>QUANTITY</th>
+              <th style={{color:"#001EB9"}}>ACTIONS</th>
             </tr>
           </thead>
           <tbody>
@@ -83,13 +84,13 @@ const FavoriteProducts = () => {
                     <button onClick={() => handleDelete(product._id)} className="icon-button">
                       <img src={deleteIcon} alt="Delete" className="icon" />
                     </button>
-                  </div>
                   <img
                     src={favorites.includes(product._id) ? coloredStar : emptyStar}
                     alt="Favorite"
                     className="icon"
                     onClick={() => toggleFavorite(product._id)}
                   />
+                   </div>
                 </td>
               </tr>
             ))}
