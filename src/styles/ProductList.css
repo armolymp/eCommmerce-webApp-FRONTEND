@@ -63,36 +63,6 @@ body {
   opacity: 0.7;
 }
 
-/* Search bar and buttons */
-.product-list .search-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.product-list .search-bar input[type="text"] {
-  width: 400px;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-.product-list .search-bar button {
-  padding: 10px 20px;
-  background-color: #0056b3;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.product-list .search-bar button:hover {
-  background-color: #004494;
-}
-
 /* Header styling */
 .header {
   display: flex;

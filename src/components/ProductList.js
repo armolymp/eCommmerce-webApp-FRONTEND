@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import { getProducts } from '../actions/productActions';
-import Product from './Product';
 import '../styles/ProductList.css';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +13,8 @@ import emptyStar from '../assets/star.svg';
 import editIcon from '../assets/edit-icon.svg';
 import deleteIcon from '../assets/delete-icon.svg';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
-import { Modal } from 'react-bootstrap'; 
+import { Modal } from 'react-bootstrap';
+import SearchBar from './SearchBar'; // Import SearchBar
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -30,8 +30,8 @@ const ProductList = () => {
     JSON.parse(localStorage.getItem('favorites')) || []
   );
 
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // State to control delete confirmation modal
-  const [productToDelete, setProductToDelete] = useState(null); // State to store the product to be deleted
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -40,8 +40,8 @@ const ProductList = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/products/${id}`);
-      dispatch(getProducts()); // Refresh the product list after deletion
-      setShowDeleteModal(false); // Close the delete confirmation modal
+      dispatch(getProducts());
+      setShowDeleteModal(false);
     } catch (error) {
       console.error("There was an error deleting the product!", error);
     }
@@ -61,17 +61,20 @@ const ProductList = () => {
       )
     : products;
 
+  const productNames = products.map((product) => product.name);
+
   return (
     <div className="product-list">
+      <SearchBar productNames={productNames} />
       {filteredProducts.length > 0 ? (
         <table>
           <thead>
             <tr>
-              <th style={{color:"#001EB9"}}>SKU</th>
-              <th style={{color:"#001EB9"}}>IMAGE</th>
-              <th style={{color:"#001EB9"}}>PRODUCT NAME</th>
-              <th style={{color:"#001EB9"}}>QUANTITY</th>
-              <th style={{color:"#001EB9"}}>ACTIONS</th>
+              <th style={{ color: "#001EB9" }}>SKU</th>
+              <th style={{ color: "#001EB9" }}>IMAGE</th>
+              <th style={{ color: "#001EB9" }}>PRODUCT NAME</th>
+              <th style={{ color: "#001EB9" }}>QUANTITY</th>
+              <th style={{ color: "#001EB9" }}>ACTIONS</th>
             </tr>
           </thead>
           <tbody>
@@ -120,7 +123,7 @@ const ProductList = () => {
         <p>No products found</p>
       )}
 
-<ConfirmDeleteModal
+      <ConfirmDeleteModal
         isOpen={showDeleteModal}
         onRequestClose={() => setShowDeleteModal(false)}
         onConfirm={() => handleDelete(productToDelete?._id)}

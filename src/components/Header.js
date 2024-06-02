@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className="header">
       <h1>{heading}</h1>
-      <SearchBar />
+      {location.pathname.startsWith('/favorites') || location.pathname.startsWith('/search')? <SearchBar />: <></>}
       <div className="actions">
         <Link className="new-product-btn" to="/add-product">New Product</Link>
         <Link className="star-btn" to="/favorites">

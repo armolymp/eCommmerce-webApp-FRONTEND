@@ -1,4 +1,4 @@
-/* SearchBar.css */
+/* src/styles/SearchBar.css */
 
 .search-bar {
   display: flex;
@@ -6,6 +6,7 @@
   max-width: 600px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  position: relative;
 }
 
 .search-bar input {
@@ -42,4 +43,28 @@
 
 .search-bar input::placeholder {
   color: #999;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 45px; /* Adjusted to be below the input field */
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 0 0 8px 8px; /* Match the search bar's border-radius */
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
 }
