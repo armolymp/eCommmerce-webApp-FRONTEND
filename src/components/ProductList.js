@@ -1,11 +1,18 @@
 // src/components/ProductList.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import { getProducts } from '../actions/productActions';
+import Product from './Product';
 import '../styles/ProductList.css';
 import axios from 'axios';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome styles
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import coloredStar from '../assets/starred.svg';
+import emptyStar from '../assets/star.svg';
+import editIcon from '../assets/edit-icon.svg';
+import deleteIcon from '../assets/delete-icon.svg';
+
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -17,17 +24,31 @@ const ProductList = () => {
   const query = useQuery();
   const searchQuery = query.get('q') || '';
 
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem('favorites')) || []
+  );
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
   const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
-      dispatch(getProducts()); // Refresh the product list after deletion
-    } catch (error) {
-      console.error("There was an error deleting the product!", error);
+    if (window.confirm(`Are you sure you want to delete this product?`)) {
+      try {
+        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        dispatch(getProducts()); // Refresh the product list after deletion
+      } catch (error) {
+        console.error("There was an error deleting the product!", error);
+      }
     }
+  };
+
+  const toggleFavorite = (id) => {
+    const updatedFavorites = favorites.includes(id)
+      ? favorites.filter((favId) => favId !== id)
+      : [...favorites, id];
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   const filteredProducts = searchQuery
@@ -46,7 +67,6 @@ const ProductList = () => {
               <th>Image</th>
               <th>Product Name</th>
               <th>Price</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -63,12 +83,23 @@ const ProductList = () => {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>
-                  <Link to={`/products/${product._id}`} className="view-button">
-                    <i className="fas fa-eye"></i>
+                  <div className="icon-container">
+                <Link to={`/products/${product._id}`}>
+                    <FontAwesomeIcon icon={faEye} className="icon" />
                   </Link>
-                  <button onClick={() => handleDelete(product._id)} className="delete-button">
-                    <i className="fas fa-trash"></i>
+                  <Link to={`/edit-product/${product._id}`}>
+                    <img src={editIcon} alt="Edit" className="icon" />
+                  </Link>
+                  <button onClick={() => handleDelete(product._id)} className="icon-button">
+                    <img src={deleteIcon} alt="Delete" className="icon" />
                   </button>
+                  <img
+                    src={favorites.includes(product._id) ? coloredStar : emptyStar}
+                    alt="Favorite"
+                    className="icon"
+                    onClick={() => toggleFavorite(product._id)}
+                  />
+                  </div>
                 </td>
               </tr>
             ))}

@@ -44,3 +44,87 @@
 .product-list .view-button:focus, .product-list .delete-button:focus {
   outline: none;
 }
+/* src/styles/ProductList.css */
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+}
+
+button {
+  margin: 5px;
+}
+
+.product-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.product-list th, .product-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.product-list th {
+  background-color: #f2f2f2;
+}
+
+.product-list img {
+  max-width: 100%;
+  height: auto;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.icon.fa-eye {
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+td img {
+  vertical-align: middle;
+}
